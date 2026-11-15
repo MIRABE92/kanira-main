@@ -13,7 +13,7 @@ GSHEET_WEBHOOK = "https://script.google.com/macros/s/AKfycbwJQqdo0iVqeKRdGnAkyfK
 PORTAL_URL = "https://streamlit.app"
 USER_DB_FILE = "kanira_users.json"
 
-st.markdown('''<style>
+st.markdown("""<style>
 .stApp { background-color: #f4f7fb; }
 .hero-banner {
     background: linear-gradient(135deg, #091a32 0%, #13386c 65%, #f37021 145%);
@@ -36,7 +36,7 @@ div[data-testid="stForm"] {
     background: #ffffff; border: 1px solid #cbd5e1; border-radius: 14px;
     padding: 1.4rem; box-shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
 }
-</style>''', unsafe_allow_html=True)
+</style>""", unsafe_allow_html=True)
 
 def make_wa_link(phone, message):
     clean_phone = "".join(ch for ch in str(phone) if ch.isdigit())
@@ -95,11 +95,11 @@ if "auth_user" not in st.session_state:
     st.session_state.auth_user = None
 
 if not st.session_state.auth_user:
-    st.markdown(f'''<div class="hero-banner">
+    st.markdown(f"""<div class="hero-banner">
         <div class="hero-pill">SEBI-REGISTERED SUB-BROKER PARTNER • INSTITUTIONAL ANALYTICS SUITE</div>
         <div class="hero-h1">🏛️ {BRAND_NAME} — Wealth, Equity & Derivatives Portal</div>
         <div class="hero-p">{PARTNER_TAG}</div>
-    </div>''', unsafe_allow_html=True)
+    </div>""", unsafe_allow_html=True)
 
     b1, b2, b3, b4 = st.columns(4)
     b1.markdown('<div class="glass-card"><h4>📈 2-Month F&O & Greeks</h4><p>Live NSE futures fair value, calendar spreads, all 5 Option Greeks & custom-days 52W P&L.</p></div>', unsafe_allow_html=True)
@@ -177,13 +177,3 @@ TOOLS = [
     ("fast_finance.py", "⚡ Financial Statement & Ratio Engine", "Research", ["Advisor Admin"])
 ]
 
-nav = {sec: [] for _, _, sec, _ in TOOLS}
-for fname, title, sec, roles in TOOLS:
-    if user["role"] in roles and os.path.exists(fname):
-        nav[sec].append(st.Page(fname, title=title))
-nav = {k: v for k, v in nav.items() if v}
-
-if nav:
-    st.navigation(nav).run()
-else:
-    st.info("Portal unlocked! Ensure your tool files (option_dashboard.py, nse_positional_pro.py, etc.) are uploaded in the same repository.")
