@@ -125,7 +125,7 @@ if not st.session_state.auth_user:
                     save_lead(l_name, l_phone, l_service)
                     msg = f"Hello {BRAND_NAME}, I am {l_name} ({l_phone}). Please create my login / book consultation for *{l_service}*."
                     st.success("Request logged! Click below to confirm on WhatsApp:")
-                    st.markdown(f"[👉 Open WhatsApp Confirmation](https://wa.me/{WHATSAPP_NO}?text={urllib.parse.quote(msg)})")
+                    st.markdown(f"[👉 Open WhatsApp Confirmation](https://wa.me///{WHATSAPP_NO}?text={urllib.parse.quote(msg)})")
                 else:
                     st.warning("Please enter both your Name and Mobile Number.")
     st.stop()
@@ -149,7 +149,7 @@ with st.sidebar:
                         st.rerun()
             for uname, uinfo in users_db.items():
                 invite_txt = f"Hello {uinfo['name']}, welcome to *{BRAND_NAME} Portal*!\n🔗 Link: {PORTAL_URL}\n👤 User: `{uname}`\n🔑 Pass: `{uinfo['pass']}`"
-                wa_target = f"https://wa.me/{uinfo['phone']}" if uinfo.get("phone") else "https://wa.me"
+                wa_target = f"https://wa.me///{uinfo['phone']}" if uinfo.get("phone") else "https://wa.me//"
                 st.markdown(f"**{uinfo['name']}** (`{uname}`) — [📲 Share]({wa_target}?text={urllib.parse.quote(invite_txt)})")
     if st.button("🚪 Logout", use_container_width=True):
         st.session_state.auth_user = None
